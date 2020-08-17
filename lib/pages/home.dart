@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/lista.dart';
 import '../widgets/usos.dart';
+import '../widgets/circulos.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 1;
+  int _currentIndex = 2;
 
   void _onItemTapped(int index){
     setState(() {
@@ -26,8 +27,8 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text("Usos")
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      title: Text("Opción 3")
+      icon: Icon(Icons.blur_circular),
+      title: Text("Circulos")
     ),
     BottomNavigationBarItem(
         icon: Icon(Icons.email),
@@ -38,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _widgetsOptions = <Widget> [
     Lista(),
     UsosPage(),
-    Container(color: Colors.black),
+    CirculosPage(),
     Container(color: Colors.blue)
   ];
 
