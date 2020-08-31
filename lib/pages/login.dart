@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import '../utils/functions.dart';
+import '../api/auth_api.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,11 +10,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _authAPI = AuthAPI();
+
   final _formKey = GlobalKey<FormState>();
   String _email, _password;
   bool _workingState = false;
 
-  _submit(){
+  _submit() async {
 
     if(_workingState) return;
 
@@ -28,10 +31,14 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       //lógica de verificación de usarios.
-      print(_email);
-      print(_password);
+      final respuesta = await _authAPI.login(context, _email, _password);
+      if(respuesta){
+        Navigator.of(context).pushReplacementNamed('home');
+      }
 
-      //Navigator.of(context).pushNamed('home');
+      setState(() {
+        _workingState = false;
+      });
 
     }
 
@@ -57,16 +64,16 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
 
                       TextFormField(
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.text,
                         validator: (String x) {
-                          if(x.isNotEmpty && Functions().validateEmail(x)){
+                          if(x.isNotEmpty){
                             _email = x;
                             return null;
                           }
-                          return "Correo Inválido";
+                          return "Usuario Inválido";
                         },
                         decoration: InputDecoration(
-                            labelText: "Correo Electónico"
+                            labelText: "Usuario"
                         ),
                       ),
 
