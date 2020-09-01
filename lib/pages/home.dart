@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/lista.dart';
 import '../widgets/usos.dart';
 import '../widgets/circulos.dart';
-
+import '../pages/datos.dart';
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       title: Text("Circulos")
     ),
     BottomNavigationBarItem(
-        icon: Icon(Icons.email),
+        icon: Icon(Icons.person),
         title: Text("Opción 4")
     )
   ];
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Lista(),
     UsosPage(),
     CirculosPage(),
-    Container(color: Colors.blue)
+    DatosPage()
   ];
 
   @override

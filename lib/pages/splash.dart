@@ -24,14 +24,14 @@ class _SplashPageState extends State<SplashPage> {
 
   check() async {
     final token = await _authAPI.getAccessToken();
-
+    //print(token);
     if(token != null){
       final jwt = token.split(".");
       final payload = json.decode(utf8.decode(base64.decode(base64.normalize(jwt[1]))));
 
       final User user = new User(
         userId: payload["userId"],
-        username: payload["nombre"],
+          username: payload["nombre"],
         email: payload["email"],
         sexo: payload["sexo"],
         usuarioImage: payload["usuarioImage"],
@@ -48,6 +48,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    _userProvider = UserProvider.of(context);
     return Scaffold(
       body: Center(
         child: CupertinoActivityIndicator(
